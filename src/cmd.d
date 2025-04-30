@@ -92,7 +92,7 @@ void print_tokens()
     }
 }
 
-
+// TODO: evaluate the commands and put them into a pipeline
 void eval_commands(char* LINE)
 {
     for (char* token = strtok(LINE, " \n\t"); token != null; token = strtok(null, " \n\t"))
@@ -120,3 +120,4 @@ void eval_commands(char* LINE)
     }
     return;
 }
+
