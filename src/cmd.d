@@ -22,6 +22,8 @@ enum COMMANDS
     _GREP_ = "grep"
 }
 
+static TOKEN[MAX_CMDS] tokens = {null};
+static size_t token_count = 0;
 
 
 
@@ -54,15 +56,44 @@ void get_commands(FILE* input, FILE* output)
         fprintf(output, PROMPT);
 
         char* result = fgets(LINE.ptr, MAX_LINE, input);
-        if (result is null || *result == EOF)
-            break;
+        if (result is null || *result == EOF) break;
         tokenize_commands(LINE.ptr);
+        print_tokens();
     }
 
 }
 
+
+struct TOKEN
+{
+    char *command;
+
+}
+
+
 // TODO: get the line and tokenize into <query> <commands> <output> 
-void tokenize_commands(char* LINE)
+void tokenize_commands(char *LINE)
+{
+    token_count = 0; // reset global index
+    char *token = strtok(LINE, " ");
+    while (token !is null && token_count < MAX_CMDS)
+    {
+        tokens[token_count++].command = token;
+        token = strtok(null, " ");
+    }
+}
+
+void print_tokens()
+{
+   for (size_t i = 0; i < token_count; i++)
+    {
+        if (tokens[i].command !is null)
+            printf("Token %d: %s\n", cast(int)i, tokens[i].command);
+    }
+}
+
+
+void eval_commands(char* LINE)
 {
     for (char* token = strtok(LINE, " \n\t"); token != null; token = strtok(null, " \n\t"))
     {
