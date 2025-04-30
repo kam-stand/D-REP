@@ -7,7 +7,7 @@ enum SEARCH
 {
     WORD,
     LINE,
-    FILE, 
+    FILE,
     DIRECTORY
 }
 
@@ -24,8 +24,6 @@ enum COMMANDS
 
 static TOKEN[MAX_CMDS] tokens = {null};
 static size_t token_count = 0;
-
-
 
 enum MAX_CMDS = 256;
 enum MAX_LINE = 1024;
@@ -56,68 +54,90 @@ void get_commands(FILE* input, FILE* output)
         fprintf(output, PROMPT);
 
         char* result = fgets(LINE.ptr, MAX_LINE, input);
-        if (result is null || *result == EOF) break;
+        if (result is null || *result == EOF)
+            break;
         tokenize_commands(LINE.ptr);
         print_tokens();
+        eval_commands();
     }
 
 }
 
-
 struct TOKEN
 {
-    char *command;
+    char* command;
 
+}
+
+char* trim(char* str)
+{
+    if (str is null) return str;
+
+    while (*str == ' ' || *str == '\t' || *str == '\n') str++;
+
+    char* end = str + strlen(str) - 1;
+
+    while (end > str && (*end == ' ' || *end == '\t' || *end == '\n'))
+    {
+        *end = '\0';
+        end--;
+    }
+
+    return str;
 }
 
 
 // TODO: get the line and tokenize into <query> <commands> <output> 
-void tokenize_commands(char *LINE)
+void tokenize_commands(char* LINE)
 {
     token_count = 0; // reset global index
-    char *token = strtok(LINE, " ");
+    char* token = strtok(LINE, " ");
     while (token !is null && token_count < MAX_CMDS)
     {
-        tokens[token_count++].command = token;
+        tokens[token_count++].command = trim(token);
         token = strtok(null, " ");
     }
 }
 
 void print_tokens()
 {
-   for (size_t i = 0; i < token_count; i++)
+    for (size_t i = 0; i < token_count; i++)
     {
         if (tokens[i].command !is null)
-            printf("Token %d: %s\n", cast(int)i, tokens[i].command);
+            printf("Token %d: %s\n", cast(int) i, tokens[i].command);
     }
 }
 
 // TODO: evaluate the commands and put them into a pipeline
-void eval_commands(char* LINE)
+void eval_commands()
 {
-    for (char* token = strtok(LINE, " \n\t"); token != null; token = strtok(null, " \n\t"))
+
+    for (size_t i = 0; i < token_count; i++)
     {
-        if (strcmp(token, cast(char*)COMMANDS._HELP_) == 0)
+        char* cmd = tokens[i].command;
+
+        if (strcmp(cmd, cast(char *)COMMANDS._HELP_) == 0)
         {
-            printf("%.*s\n", cast(int) helpText.length, helpText.ptr);
+            printf("%s\n", helpText.ptr);
         }
-        else if (strcmp(token, cast(char*)COMMANDS._LS_) == 0)
+        else if (strcmp(cmd, cast(char *)COMMANDS._CD_) == 0)
         {
-            printf("Listing...\n");
+            printf("cd command called (implement logic)\n");
         }
-        else if (strcmp(token, cast(char*)COMMANDS._CD_) == 0)
+        else if (strcmp(cmd, cast(char *)COMMANDS._LS_) == 0)
         {
-            printf("Changing directory...\n");
+            printf("ls command called (implement logic)\n");
         }
-        else if (strcmp(token, cast(char*)COMMANDS._CAT_) == 0)
+        else if (strcmp(cmd, cast(char *)COMMANDS._CAT_) == 0)
         {
-            printf("Viewing file...\n");
+            printf("cat command called (implement logic)\n");
         }
         else
         {
-            printf("Unknown command: %s\n", token);
+            printf("Unknown command: %s\n", cmd);
         }
     }
+
     return;
 }
 
