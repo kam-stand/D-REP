@@ -27,14 +27,16 @@ enum PROMPT = "D-REP > ";
 
 static immutable char[] helpText =
     "D-REP HELP:\n" ~
-    "-----------\n\n" ~
+    "-----------\n" ~
     "[USAGE]\n" ~
-    "  [QUERY] - search input (e.g., a word or filename)\n" ~
+    "  [QUERY] - search input (e.g., a word or pattern match)\n" ~
     "  [COMMANDS] - operations to execute based on query\n\n" ~
     "[COMMANDS]\n" ~
     "  ls   - list matches or directory contents based on query\n" ~
     "  cd   - change directory to a match\n" ~
-    "  cat  - view contents of a matching file\n\n" ~
+    "  cat  - view contents of a matching file\n" ~
+    "[FILE_PATH]\n" ~
+    "  Must be a valid file path into cache\n " ~
     "[NOTE]\n" ~
     "  Queries must be valid. Output depends on context.\n";
 
@@ -54,6 +56,7 @@ void get_commands(FILE* input, FILE* output)
 
 }
 
+// TODO: get the line and tokenize into <query> <commands> <output> 
 void tokenize_commands(char* LINE)
 {
     for (char* token = strtok(LINE, " \n\t"); token != null; token = strtok(null, " \n\t"))
