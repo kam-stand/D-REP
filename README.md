@@ -46,7 +46,7 @@ Output:
 
 In this example:
 
-* ls "JSON*" searches the current directory for files/folders that match the pattern
+* `ls` `"JSON*"` searches the current directory for files/folders that match the pattern
 
 * D-rep presents a list of matching results
  
@@ -73,7 +73,7 @@ Instead of guessing or manually searching:
 
    * 📋 Interactive selection menu
 
-   * 🔗 Seamless command piping (|)
+   * 🔗 Seamless command piping (`|`)
 
    * ⚡ Built for speed using D
 
