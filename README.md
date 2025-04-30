@@ -1,34 +1,91 @@
 # D-rep
 
-A shell, written in D lang, that is centered around the command line tool **grep**. D-rep offers a better user experience from your terminal to search and move around your file system 📁.
 
-Through D-rep's integrated command pipeline it can search 👀 and index to given file or directories all within the hands of the user 💯
+**D-rep** is a shell tool written in **D language**, inspired by the power of `grep`. It offers a streamlined and interactive way to search, navigate, and explore your file system directly from the terminal 📁.
 
-# Command Pipeline 🪈
+With D-rep's integrated **command pipeline**, you can **search 👀, index**, and **act** on files or directories—all from a single, user-friendly interface 💯.
 
-The command pipeline is the central idea behind D-rep and offers a concise and consistent approach to your file navigation.
 
-1. speficy a command that you wish to use 
-> ☝️ built in commands like `ls` or `cd` don't have the ability to 🔎 search for a file or directory it needs the **exact** input. Through grep and D-reps command pipeline we can fix this by searching the file system given the pattern and offer a friendly interface to choose from the given options. Furthermore, you can pipe the output into other commands!.
 
-2. enter a **pattern** or **query** you want to search for in your directory.
+# 🚀 Why D-rep?
 
-3. finally, you can choose to output the command and query to another command or simply **scroll** through the options.
+Traditional tools like `ls` and `cd` require precise inputs—you need to know the exact filename or path. But what if you only remember part of it?
 
-## Example
+That’s where **D-rep** shines. It allows you to:
+- Search using patterns (like `"JSON*"`)
+- View matching results
+- Interactively choose files or directories
+- Pipe results into other commands
 
-``` sh
+---
+
+## 🪈 Command Pipeline
+
+The **command pipeline** is the heart of D-rep. It gives you a consistent and powerful approach to file navigation.
+
+### 🔧 How it works:
+
+1. **Specify a command** (e.g., `ls`, `cat`, or a custom action)
+2. **Provide a search pattern** (e.g., `"JSON*"`)
+3. **Pipe the results** into another command or view them in an interactive menu
+4. **Select the file or directory** you were looking for without typing the full path
+
+---
+
+# 📌 Example
+
+```sh
 D-REP > ls "JSON*" | cd
-
-D-REP >
+```
+Output:
+```js
 >   [D]  ~/Desktop/Computer_Science/JSON-parser
     [D]  ~/Desktop/JSON-files
     [F]  ~/Documents/user_JSON.json
 ```
-- You can see here the command `ls` is given a pattern which means it wants to search our current directory for any file or folders that match `JSON*`
 
-- first commans will then `ls` all of the file paths of that match and then given the user to choose which option they want.
+In this example:
 
-- Depending on the option if its a `file` or `directory` the output can be piped into the `cd` command which will change the given directory
+* ls "JSON*" searches the current directory for files/folders that match the pattern
 
-> Overall, you can see that the motivation was, we could not remember which directory to `cd` into because we only remembered a certain pattern. Therefore, we use D-rep to list all possibly matches that I given to then choose from.
+* D-rep presents a list of matching results
+ 
+* You choose the desired path
+ 
+* The result is piped into cd and navigates to that directory
+
+
+# 🎯 Motivation
+
+Sometimes, you can't recall the exact directory name—but you remember a keyword or pattern. D-rep bridges that gap.
+
+Instead of guessing or manually searching:
+
+   1. Just enter a pattern
+
+   2.  View the matches
+
+   3.  Let D-rep help you get where you want to go—fast and efficiently
+
+# ✅ Features
+
+   * 🔍 Pattern-based file/directory search
+
+   * 📋 Interactive selection menu
+
+   * 🔗 Seamless command piping (|)
+
+   * ⚡ Built for speed using D
+
+   * 🧠 Smarter shell experience
+
+# 🛠️ Future Plans
+
+- [ ] Support for custom scripts
+
+- [ ] File previews before selection
+
+- [ ] Persistent session history
+
+Give your terminal **superpowers** 🦸 with D-rep.
+Say goodbye to guesswork—and hello to smooth file navigation.
