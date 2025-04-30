@@ -17,8 +17,9 @@ enum COMMANDS
     _CD_ = "cd",
     _CAT_ = "cat",
     _HELP_ = "help",
-    _LESS_ = "less"
-
+    _LESS_ = "less",
+    _FIND_ = "find",
+    _GREP_ = "grep"
 }
 
 

@@ -10,7 +10,7 @@ extern (C) int main(int argc, char** argv)
     char[BUFFER_SIZE] buffer;
 
     // Open pipe for reading output of 'ls -l' command
-    fp = popen("grep 'D-PRO' ./cache.txt", "r");
+    fp = popen("grep 'D-PROJEC' ./cache.txt", "r");
     if (fp == null)
     {
         perror("popen");
