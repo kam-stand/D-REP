@@ -7,6 +7,8 @@ enum SEARCH
 {
     WORD,
     LINE,
+    FILE, 
+    DIRECTORY
 }
 
 enum COMMANDS
@@ -14,9 +16,11 @@ enum COMMANDS
     _LS_ = "ls",
     _CD_ = "cd",
     _CAT_ = "cat",
-    _HELP_ = "help"
+    _HELP_ = "help",
+    _LESS_ = "less"
 
 }
+
 
 
 
