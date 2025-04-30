@@ -19,7 +19,8 @@ enum COMMANDS
     _HELP_ = "help",
     _LESS_ = "less",
     _FIND_ = "find",
-    _GREP_ = "grep"
+    _GREP_ = "grep",
+    _SPACE_ = " "
 }
 
 static TOKEN[MAX_CMDS] tokens = {null};
@@ -132,9 +133,13 @@ void eval_commands()
         {
             printf("cat command called (implement logic)\n");
         }
+        else if (strcmp(cmd, cast(char *)COMMANDS._SPACE_) == 0)
+        {
+
+        }
         else
         {
-            printf("Unknown command: %s\n", cmd);
+          printf("unknown command [%s]\n", cmd);   
         }
     }
 
